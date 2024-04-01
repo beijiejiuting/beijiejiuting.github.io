@@ -11,7 +11,8 @@
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     // 将文本内容插入到div中，并替换换行符为<br>标签
                     var textContent = xhr.responseText.replace(/\n/g, '<br>');
-                    document.getElementById('text-content').textContent = xhr.responseText;
+                    // 使用innerHTML来插入带有格式的HTML内容
+                    document.getElementById('text-content').innerHTML = textContent;
                 }
             };
             xhr.send();
