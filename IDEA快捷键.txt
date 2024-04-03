@@ -1,0 +1,14 @@
+复制当前行到下一行C+d
+展开文件栏A+1?
+查看所有方法C+F12
+代码段放入新建方法 C+A+m
+整段变为注释 C+A+/
+构造方法
+setter getter
+
+
+快捷使用
+psvm
+sout
+.var
+arr fori
