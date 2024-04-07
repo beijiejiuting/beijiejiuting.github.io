@@ -5,6 +5,7 @@
 构造方法 右键 generator
 setter getter 右键 generator
 创建方法 A+Enter
+包围代码段C+A+t
 
 快捷使用
 psvm
