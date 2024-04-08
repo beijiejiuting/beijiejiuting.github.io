@@ -11,4 +11,4 @@ setter getter 右键 generator
 psvm
 sout
 .var
-arr.fori
+arr.for
