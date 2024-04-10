@@ -1,3 +1,4 @@
+
 2024.4.1
 学习一些基础 IDEA的使用,Debug,注释中的TODO
 2024.4.2
@@ -28,4 +29,15 @@ Java8 -:Date Calendar  DateFormat (线程不安全)
 Java8+:LocalTimeDate DateTimeFormatter Instant Duration Peroid
 Exception
 Collection,List接口
+ArrayList,LinkedList
 2024.4.8
+泛型
+红黑树
+2024.4.9
+HashSet,TreeSet,LinkedHashSet
+Map
+2024.4.10
+stream:三种获取,中间方法(filter,limit,skip,distinct,concat),终结方法(forEach,count)
+collect:   stream.collect(Collectors.toList/Set/Map(new Function<old,new>(){},new Function<old,new>(){}))
+
+File类,构造,判断(isFile,isDirectory,exist),获取(length,getAbsolutePath,getPath,getName,lastModified),创建(createNewFile,mkdir,mkdirs),删除(delete),遍历(listFiles)
