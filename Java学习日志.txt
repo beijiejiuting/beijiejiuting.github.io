@@ -55,13 +55,30 @@ Java8+:     (线程安全,不修改对象本身,返回新对象)
 Exception try{}catch(Exception){}finally{} throws Exception1,Exception2
 	throw new Exception("!"),e.printStackTrace(),e.getMessage()
 	子类方法不能throw父类没有的Exception
-Collection,List接口
-ArrayList,LinkedList
+Collection add,clear,isEmpty,size	remove,contains(重写equals)
+	遍历:迭代器:获取c.iterator(),迭代it.next(),仍有hasNext()
+	       增强for  for( i : c){}
+	       foreach(匿名内部类)
+List接口:	add,remove,set,get 
+	遍历:迭代器 普通for 增强for foreach 
+	       ListIterator previous,haPrevious,add,remove
+ArrayList:初始0,add()10,超出扩容1.5倍
+LinkedList: add/get/removeFirst/Last
 2024.4.8
-泛型
+泛型(将运行时错误提升到编译期)
+泛型类:成员变量,方法返回值/参数
+泛型方法:参数 static<T>
+泛型接口:方法返回值/参数 实现时可以指定类型,也可以继续声明泛型
+泛型通配符: <?>任意类型 
+泛型限定:<? extends F>F或F子类 <? super S>S或S父类
+AVL树
 红黑树
 2024.4.9
-HashSet,TreeSet,LinkedHashSet
+HashSet,
+TreeSet(红黑树,排序,去重) add元素需要实现Comparable,重写compareTo(),返回值0相同,1大/右/正序,-1小/左/ 倒序
+		      比较器(优先):创建TreeSet时,传入一个Comparator(内部类),重写compare(o1,o2)o1-o2正序
+					
+LinkedHashSet
 Map
 2024.4.10
 Stream类:三种获取(数组,列表,零散元素),中间方法(filter,limit,skip,distinct,concat),终结方法(forEach,count)
@@ -69,5 +86,4 @@ collect:   stream.collect(Collectors.toList/Set/Map(new Function<old,new>(){},ne
 File类,:构造,判断(isFile,isDirectory,exist),获取(length,getAbsolutePath,getPath,getName,lastModified),创建(createNewFile,mkdir,mkdirs),删除(delete),遍历(listFiles)
 IO流
 字节流:In/OutputStream ->FileIn/OutputStream 
-字符流Reader,Writer ->FileReader/Writer
-FileOutputStream 创建(File/String,true(追加模式)),write,close try(fos){io}catch(IOException e){}
+字符流Reader,Writer ->FileReader/Writer xception e){}
