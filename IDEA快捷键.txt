@@ -6,7 +6,7 @@
 setter getter 右键 generator
 创建方法 A+Enter
 包围代码段C+A+t
-
+格式化代码C+A+l
 快捷使用
 psvm
 sout

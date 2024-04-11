@@ -1,13 +1,15 @@
-
 2024.4.1
 学习一些基础 IDEA的使用,Debug,注释中的TODO
 2024.4.2
 util.Scanner
 2024.4.3
 循环标号和break
-API String
+API 
+String 遍历:toCharArray,charAt 截取:substring 替换:replace,repalceAll(regex,newstr) 拆分:split
+StringBuilder:append,reverse,length,toString
+StringBuffer:线程安全
 2024.4.4
-集合(ArrayList)
+集合(ArrayList):add(index,element),get,set,size,remove(index/obejct)
 static和工具类,权限,extends
 final
 abstract
@@ -20,14 +22,39 @@ interface的多extends implements多态
 基本界面
 石头迷阵小游戏
 2024.4.6
-Object类,Math类,BigDecimal类
-包装类
+Object类:重写toString,equals
+Math类(static):abs,ceil,floor,round,max,pow,random[0,1)
+System类(static):exit,currentTimeMillis,arraycopy
+BigDecimal类:构造(double(不精确)/string)/BigDecimal.valueOf(double)  add,subtract,multiply,devide
+包装类(Integer):构造/Integer.valueOf()  intValue()      static方法:toBinary/Octal/HexString,parseInt 
+有cache(-128~127)
 2024.4.7
-Arrays,正则表达式
+Arrays(static):toSting,equals,binarySearch,sort
+正则表达式:[]单个,^取反        X? 0/1次 X* 任意次 X+ 大于0次 X{n}n次 X{n,}大于等于n次 X{n,m}n~m次
+通配符: '.' 任意 '\d'数字 '\s' 空白 '\w'字母数字下划线  
+Pattern类:获取(static):Pattern.compile(regex)
+Matcher类:获取pattern.matcher(data) 查找下一个find 获取group
 时间API
-Java8 -:Date Calendar  DateFormat (线程不安全)
-Java8+:LocalTimeDate DateTimeFormatter Instant Duration Peroid
-Exception
+Java8-:	Date:构造(  /long),getTime,setTime
+	SimpleDateFormat(线程不安全):构造:( /String)yyyy年MM月dd日 HH:mm:ss	parse,format
+	Calendar:创建 Calendar.getInstance(),  get,set,add,SetTime(Date),getTime
+Java8+:     (线程安全,不修改对象本身,返回新对象)
+	LocalTimeDate:构造(static):now/of()  toLocalDate/Time get***(可以再.getValue()获取int)
+	                       with/plus/minus***
+		       equals,isBefore,isAfter	 
+		       parse(string,formatter)
+	DateTimeFormatter:构造(static):ofPattern("yyyy年MM月dd日 HH:mm:ss")   
+		               format 
+	Instant:构造(static):now/of***(),atZone(ZoneId),isBefore,isAfter,plus/minus***
+	ZoneDateTime:构造(static):now/of(),with/plus/minus***
+	ZoneId(static):getAvailableZoneIds,systemDefault,of  
+
+	Peroid:构造(static)between(date1,date2) get***( )	
+	Duration:构造(static)between(datetime1,datetine2) to***()
+	ChronoUnit(static):ChronoUnit.YEARS/***.between(datetime1,datetine2)
+Exception try{}catch(Exception){}finally{} throws Exception1,Exception2
+	throw new Exception("!"),e.printStackTrace(),e.getMessage()
+	子类方法不能throw父类没有的Exception
 Collection,List接口
 ArrayList,LinkedList
 2024.4.8
@@ -37,7 +64,10 @@ ArrayList,LinkedList
 HashSet,TreeSet,LinkedHashSet
 Map
 2024.4.10
-stream:三种获取,中间方法(filter,limit,skip,distinct,concat),终结方法(forEach,count)
+Stream类:三种获取(数组,列表,零散元素),中间方法(filter,limit,skip,distinct,concat),终结方法(forEach,count)
 collect:   stream.collect(Collectors.toList/Set/Map(new Function<old,new>(){},new Function<old,new>(){}))
-
-File类,构造,判断(isFile,isDirectory,exist),获取(length,getAbsolutePath,getPath,getName,lastModified),创建(createNewFile,mkdir,mkdirs),删除(delete),遍历(listFiles)
+File类,:构造,判断(isFile,isDirectory,exist),获取(length,getAbsolutePath,getPath,getName,lastModified),创建(createNewFile,mkdir,mkdirs),删除(delete),遍历(listFiles)
+IO流
+字节流:In/OutputStream ->FileIn/OutputStream 
+字符流Reader,Writer ->FileReader/Writer
+FileOutputStream 创建(File/String,true(追加模式)),write,close try(fos){io}catch(IOException e){}
