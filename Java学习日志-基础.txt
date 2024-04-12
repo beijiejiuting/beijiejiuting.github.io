@@ -1,7 +1,7 @@
 2024.4.1
 学习一些基础 IDEA的使用,Debug,注释中的TODO
 2024.4.2
-util.Scanner
+Scanner(System.in)
 2024.4.3
 循环标号和break
 API 
@@ -74,16 +74,47 @@ LinkedList: add/get/removeFirst/Last
 AVL树
 红黑树
 2024.4.9
-HashSet,
+HashSet(哈希表,去重)重写equals(),hashCode() 
+	Java8-:容量16,头插 
+	Java8(内部创建HashMap):初始容量16,加载因子0.75,哈希扰动(右移16位),二次哈希(异或原哈希值)
+	元素达到容量*加载因子时,数组扩容2倍
+	链表挂超过8个,数组没超过64,数组扩容2倍
+	链表挂超过8个,数组长度到达64,链表转红黑树,
 TreeSet(红黑树,排序,去重) add元素需要实现Comparable,重写compareTo(),返回值0相同,1大/右/正序,-1小/左/ 倒序
-		      比较器(优先):创建TreeSet时,传入一个Comparator(内部类),重写compare(o1,o2)o1-o2正序
-					
-LinkedHashSet
-Map
+		      比较器(优先):创建TreeSet时,传入一个Comparator(内部类),重写compare(o1,o2)o1-o2正序					
+LinkedHashSet(哈希表+双向链表,存取有序,去重 )
+Collections工具类 addAll,shuffle,binarySearch,swap    sort,max,min元素需要实现Comparable,重写compareTo()
+可变参数(int... nums)(0~n个)参数接收到nums数组里
+Map接口 put(key若相同,value覆盖),remove,clear,containsKey/Value,isEmpty,size
+	遍历: keySet(获取所有key) get(key) 
+	        entrySet(获取所有键值对),遍历entrySet getKey/Value
+	        foreach(匿名内部类)
 2024.4.10
 Stream类:三种获取(数组,列表,零散元素),中间方法(filter,limit,skip,distinct,concat),终结方法(forEach,count)
 collect:   stream.collect(Collectors.toList/Set/Map(new Function<old,new>(){},new Function<old,new>(){}))
 File类,:构造,判断(isFile,isDirectory,exist),获取(length,getAbsolutePath,getPath,getName,lastModified),创建(createNewFile,mkdir,mkdirs),删除(delete),遍历(listFiles)
+2024.4.11
 IO流
-字节流:In/OutputStream ->FileIn/OutputStream 
-字符流Reader,Writer ->FileReader/Writer xception e){}
+字节流:In/OutputStream ->FileIn/OutputStream 构造参数为文件路径String/File
+	FileInputStream:read(/byte[])末尾返回-1
+	FileOutputStream(不存在自动创建,默认重写,true追加):write(int/byte[],string.getBytes)
+	close(关流):try(需要close的对象,实现AutoCloseable,重写close ){IO}catch(Exception e){}
+字节缓冲流BufferedIn/Outputstream(In/Outputstream) 内置数组长度8192 
+2024.4.12
+	字符转字节 string.getBytes( /charSetName) 字节转字符 String(byte[],charSetName)
+字符流Reader,Writer ->FileReader/Writer 构造参数为文件路径String/File 
+	FileReader: read( /char[])末尾返回-1 内置数组长度8192 
+	FileWriter(不存在自动创建,默认重写,true追加):write(int/char[]/String)内置数组长度1024 不关流不写,flush(刷出数据) 
+字符缓冲流BufferedReader/Writer(Reader/Writer) 内置数组长度8192 
+	BufferedReader:read,readLine()末尾返回null,忽略\n
+	BufferedWriter:write,newLine()写出换行
+转换流(按指定字符编码读写/字节流转字符流):In/OutputStreamReader/Writer(In/OutputStream,charSetName) read/write
+序列化流:构造ObjectIn/OutputStream(In/OutputStream)
+	ObjectOutputStream():序列化 writeObject(o) o要实现serializable接口(自动生成serialVersionUID,推荐手动写)
+	ObjectInputStream():反序列化 o=readObject()
+	transient关键字(修饰成员变量,不被序列化)
+打印流:PrintStream (extends FileOutputStream)构造(OutputStream/File/String,charSetName)
+	write(写出一个字节),print(),println()
+          PrintWriter  (extends Writer)构造(OutputStream/File/String,boolean,charSetName)
+Properties:(extends HashTable )set/getProperties stringPropertyNames()返回keySet(用来遍历)
+	IO:  load(InputStream/Reader)    store(OutputStream/Writer,string)

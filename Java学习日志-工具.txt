@@ -1,0 +1,1 @@
+打包(jar):项目结构-工件-选择模块,主类   构建工件 生成于out-artifacts 运行 java -jar  ***.jar
