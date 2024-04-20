@@ -1,0 +1,36 @@
+2024.4.19
+引入CSS:行内/内嵌(一般在head中)/外联<link>
+CSS选择器:元素选择器<类选择器(.class)<id选择器(#id)
+超链接<a href="" target="">
+盒子:content/padding/border/margin
+<form action="" method="get(加到url后面)/post(在请求体中)">
+	<lable自动聚焦到控件><input type="text/submit" name="">
+	<select>
+	<textarea>
+JavaScript：
+引入:内部/外部脚本
+变量声明:var/let/const
+函数声明:function  xxx/var xxx=function
+对象:
+       Array(长度类型可变)=[1,2,3]/=new Array(1,2,3)    .length    .forEach()  .push()  .splice()
+       String=""/=new String("")    .length    .charAt()  .indexOf()  .trim()  .subString()
+       自定义对象:var x = {field=value , method(: function)(){} };
+       JSON:var x = '{"key":value/"string"/[array]}'    obj=JSON.parse(str)   str=JSON.stringify(obj)
+       BOM:Window,Navigator.Screen,History,Location
+	Window.可以省略 alert(),confirm(),setInterval(),setTimeout()
+	Location.href set/get完整URL
+       DOM:Document,Element,Attribute,Text,Comment 
+	Document.getElementById  getElementsByTagName/Name/ClassName 
+事件监听:事件绑定: <x 事件="f()">/x.事件=f()
+
+Vue框架
+Vue对象({ el: , data:{} ,method:{},钩子方法 })
+v-指令:bind给标签设置属性 model表单双向数据绑定 on绑定事件 if/else-if/else符合则渲染展示 show符合则展示 for遍历 
+生命周期:Create Mount Update Destroy
+
+Axios:是对原生Ajax的封装
+         先引入Axios.js   发送请求:axios({method:"get/post" ,url:" ",data:"id=1"}).then(result=>{ })
+		请求方式别名 axios.get/delete(url[,config])  .post/put(url[,data[,config]]).then(result=>{})
+
+Vue项目:
+	

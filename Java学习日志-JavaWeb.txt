@@ -1,0 +1,29 @@
+架构: C/S B/S
+InetAddress:获取对象:InetAddress.getByName("")   .getHostName .getHostAddress
+UDP:new DatagramSocket(随机/指定端口) DatagramPackage(bytes[],length,ip,port)  
+	发送:new DS,new DP,ds.send(dp) ds.close()
+	接受:new DS,new DP,ds.receive(dp),dp.get/Data/Length/Address/Port(),ds.close()
+	单播	组播:接收端MuticastSocket,ms.joinGroup(组播地址)	广播
+TCP:客户端 Socket(host,port) socket.getOutputStream() os.write() os.close s.socket.close
+       服务器 ServerSocket(port) socket=ss.accept() socket.getInputStream() is.close s.socket.close
+       结束输入流:socket.shutdownOutput 此时客户端的输入流的read()接收到-1
+UUID.randomUUID()
+ 
+
+
+
+
+  
+
+URL:协议://主机:端口号/路径?查询参数
+
+
+
+SpringBoot骨架(网页/IDEA)
+@Controller/@Service修饰class,自动创建(控制器对象只有一个)
+@RequestMapping("/路径")
+@ResponseBody修饰方法
+ 
+控制反转:对象创建权转移给Spring框架
+依赖注入:框架找依赖对象@Autowired,放到类型匹配的变量里 
+控制器处理请求时,自动创建JavaBean

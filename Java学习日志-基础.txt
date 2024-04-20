@@ -33,7 +33,7 @@ Arrays(static):toSting,equals,binarySearch,sort
 正则表达式:[]单个,^取反        X? 0/1次 X* 任意次 X+ 大于0次 X{n}n次 X{n,}大于等于n次 X{n,m}n~m次
 通配符: '.' 任意 '\d'数字 '\s' 空白 '\w'字母数字下划线  
 Pattern类:获取(static):Pattern.compile(regex)
-Matcher类:获取pattern.matcher(data) 查找下一个find 获取group
+Matcher类:获取pattern.matcher(data) 查找下一个find 获取group(index,0为全部,1开始,regex每个括号是一个组)
 时间API
 Java8-:	Date:构造(  /long),getTime,setTime
 	SimpleDateFormat(线程不安全):构造:( /String)yyyy年MM月dd日 HH:mm:ss	parse,format
@@ -52,7 +52,7 @@ Java8+:     (线程安全,不修改对象本身,返回新对象)
 	Peroid:构造(static)between(date1,date2) get***( )	
 	Duration:构造(static)between(datetime1,datetine2) to***()
 	ChronoUnit(static):ChronoUnit.YEARS/***.between(datetime1,datetine2)
-Exception try{}catch(Exception){}finally{} throws Exception1,Exception2
+Exception try{}catch(Exception){}finally{}        	throws Exception1,Exception2
 	throw new Exception("!"),e.printStackTrace(),e.getMessage()
 	子类方法不能throw父类没有的Exception
 Collection add,clear,isEmpty,size	remove,contains(重写equals)
@@ -77,7 +77,7 @@ AVL树
 HashSet(哈希表,去重)重写equals(),hashCode() 
 	Java8-:容量16,头插 
 	Java8(内部创建HashMap):初始容量16,加载因子0.75,哈希扰动(右移16位),二次哈希(异或原哈希值)
-	元素达到容量*加载因子时,数组扩容2倍
+	元素超过容量*加载因子时,数组扩容2倍
 	链表挂超过8个,数组没超过64,数组扩容2倍
 	链表挂超过8个,数组长度到达64,链表转红黑树,
 TreeSet(红黑树,排序,去重) add元素需要实现Comparable,重写compareTo(),返回值0相同,1大/右/正序,-1小/左/ 倒序
@@ -116,5 +116,45 @@ IO流
 打印流:PrintStream (extends FileOutputStream)构造(OutputStream/File/String,charSetName)
 	write(写出一个字节),print(),println()
           PrintWriter  (extends Writer)构造(OutputStream/File/String,boolean,charSetName)
-Properties:(extends HashTable )set/getProperties stringPropertyNames()返回keySet(用来遍历)
+Properties:(extends HashTable )set/getProperties stringPropertyN ames()返回keySet(用来遍历)
 	IO:  load(InputStream/Reader)    store(OutputStream/Writer,string)
+2024.4.13
+Commons/hutool
+2024.4.14
+多线程: 
+1:extends Thread,重写run(),new对象.start()
+2:implements Runnable,重写run(),new对象,new Thread(o) t.start()
+3:implements Callabel,重写call(),new对象,new FutureTask(o),newThread(ft),t.start(),ft.get()
+get/setName()    Thread.currentThread(static)sleep(static)    set/getPriority    setDaemon()守护    Thread.yield()礼让    t.join()插入到当前线程之前
+线程状态:新建NEW->就绪RUNNABLE->运行->(阻塞BLCOKED)/(WAITING/TIMED_WAITING)->死亡TERMINATED
+同步:同步代码块:synchronized(o){}各个线程使用同一把锁才能实现 o=.class()字节码只加载一次
+       同步方法:synchronized关键字放在方法返回值之前 非static方法的锁对象this / static方法的锁对象是字节码
+       锁: new ReentrantLock(), lock.lock() lock.unlock()
+2024.4.15
+等待唤醒机制:thread:wait()    lock:notify(),notifyAll()
+	阻塞队列: Array/LinkedBlockingQueue  .put()  .take()  自动加锁 
+线程池:ExecutorService p= new Executors.newFixed/CachedThreadPool(n)    方法:p.submit(Runnable/Callable) p.shutdown
+	自定义线程池:1:核心线程满,等待队列满,才开临时线程 2:拒绝策略:Abort(default)/Discard/DiscardOldest/CallerRuns
+	ThreadPoolExecutor p=new TPE(核心线程,最大线程,空闲线程最大存活时间,TimeUnit,BlockingQueue,ThreadFactory,Policy)
+	线程池推荐大小:
+		CPU密集型运算:最大并行数+1; I/O密集型运算:最大并行数*期望CPU利用率*(cal_time+wait_time)/cal_time
+2024.4.17
+反射:
+	获取class对象:Class.forName(全类名)  类名.calss  对象.getClass()
+	获取Constructor:get(Declared)Constructor(s)(),Declared全部,无Declared公共,无s传参数(参数类型.class)
+		con.getModifiers/Parameters()  con.newInstance()  con.setAccessible()
+	获取成员变量:get(Declared)Field(s)(),Declared全部,无Declared公共,无s传参数(变量名)
+		f.getModifiers/Name/Type() f.get/set(o)获取o的成员变量的值  f.setAccessible()
+	获取成员方法:get(Declared)Method(s)(),Declared全部(无父类),无Declared公共(含父类),无s传参数(方法名,参数类型.class)
+		m.getModifiers/Name/Parameters/ExceptionTypes()  m.setAccessible()
+		调用成员方法:new对象 m.invoke(o,参数)
+代理:原类都要实现一个接口,接口中是要被代理的方法
+	写代理工具类:写获得代理对象方法(static),返回代理对象,参数为原类对象(被代理对象)
+		return (强转接口类型)Proxy.newProxyInstance(类加载器,接口数组,代理方法)
+			类加载器:代理工具类.class.getClassLoader()
+			接口数组: new Class[]{接口.class}	
+			代理方法(接口类型):实现方法invoke(代理对象,method,参数)---此处与下方调用对应---
+					{代理的操作+return method.invoke(原类对象,参数)调用原类方法()}
+	获取代理对象:代理工具类调用获得代理对象方法
+	通过代理对象调用代理方法:代理对象.method(参数)---此处与invoke处对应---
+完结于2024.4.17
