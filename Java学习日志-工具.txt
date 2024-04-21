@@ -1,1 +1,7 @@
 打包(jar):项目结构-工件-选择模块,主类   构建工件 生成于out-artifacts 运行 java -jar  ***.jar
+Maven:
+           依赖配置:<dependency(ies)><groupId><artifactId><version>
+	 <scope>(依赖范围):compile111/test010/provided110/runtime011 - main/test/package
+           依赖传递:可以通过<exclusion(s)>主动断开依赖 
+           生命周期(lifecycle):clean compile/test/package/install
+Postman(ApiFox):网页调试/发送HTTP请求

@@ -22,8 +22,31 @@ URL:协议://主机:端口号/路径?查询参数
 SpringBoot骨架(网页/IDEA)
 @Controller/@Service修饰class,自动创建(控制器对象只有一个)
 @RequestMapping("/路径")
-@ResponseBody修饰方法
+@ResponseBody修饰方法(@Responsebody+@Controller)
  
-控制反转:对象创建权转移给Spring框架
-依赖注入:框架找依赖对象@Autowired,放到类型匹配的变量里 
+
 控制器处理请求时,自动创建JavaBean
+
+HTTP:基于TCP,基于请求-响应模型,无状态
+        请求:请求行:GET/POST(请求方式) /src(资源路径) HTTP/x.x(协议)
+               请求头:Host:请求的主机  User-Agent:浏览器版本 Accept: */*接受资源类型 Accept-Language/Encoding Content-Type/Length
+               请求体(POST):
+        响应:响应行:HTTP/x.x(协议) 状态码 描述
+	状态码:1xx响应中,2xx成功,3xx重定向,4xx客户端错误,5xx服务器错误
+               响应头:Content-Type/Length/Encoding Cache-Control Set-Cookie
+               响应体(POST):
+        解析:使用Tomcat(springboot内嵌)
+DispatcherServlet(前段控制器):HttpServletRequest/Response
+
+接收参数:简单参数(名字对应参数)/实体参数(名字对应对象的属性)/数组集合参数(1,发送多个同名2,用数组/@RequestParam集合接收)/日期参数@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime/JSON参数@RequestBody 对象接收/路径参数@RequestMapping(/xx/{id}/{name})参数前@PathVariable
+返回值:RUSULT设计模式,统一响应结果
+
+三层架构:Controller->Service->Dao(Data Access Object)
+解耦:IOC&DI
+	控制反转IOC:@Component对象创建权转移给Spring的容器
+		@Component->{@Controller,@Service,@Repository}(value="") 
+		扫描到的注解才能生效,默认扫描当前包以及子包
+	依赖注入DI:@Autowired容器提供程序需要的资源(默认按照类型注入)
+		@Primary@(Component)优先注入
+		@Qualifier("")@Autowired按value注入 
+		@Resource(name="")按value注入 (provided by JDK)
