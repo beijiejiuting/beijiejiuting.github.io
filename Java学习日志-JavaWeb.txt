@@ -50,3 +50,20 @@ DispatcherServlet(前段控制器):HttpServletRequest/Response
 		@Primary@(Component)优先注入
 		@Qualifier("")@Autowired按value注入 
 		@Resource(name="")按value注入 (provided by JDK)
+
+MySQL:
+           SQL语句:DDL/DML/DQL/DCL
+	DDL:(数据库定义)show databases;/create database dbname;/use dbname/select database()/drop database dbname
+	DDL:(表操作)create table tbname(字段 类型 [约束not null/unique/primary key(auto_increment) /default/foreign key] [注释],);
+	DML:(数据库操作)insert into tbname(字段) values (""),("")/update tbname set  x1=v1,x2=v2 where /delete from dbname where  
+	DQL: select (聚合) from where (groupby having) orderby limit
+	        select distinct/a (as) b
+	        where is (not) null/between and/in ()/lik e '_ %'
+	        聚合函数:count(*),min(),max(),avg(),sum()
+	        分组:group by分组 having分组后的过滤条件(可以使用聚合函数) select 分组,聚合
+	        排序:order by 字段 ASC/DESC,
+	        分页:limit 起始索引,长度
+	多表设计:foreign key
+		一对多:在多的一方添加外键关联一的一方的主键
+		一对一:任意一方，添加外键(unique)，关联另外一方的主键。
+		多对多使用中间表两个外键分别关联两方的主键
