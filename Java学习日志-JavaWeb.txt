@@ -67,3 +67,6 @@ MySQL:
 		一对多:在多的一方添加外键关联一的一方的主键
 		一对一:任意一方，添加外键(unique)，关联另外一方的主键。
 		多对多使用中间表两个外键分别关联两方的主键
+	多表查询:内连接(AB交集):显式:from A [inner] join B on 隐式: from tb1,tb2 where(表可以起别名)
+	              外连接(A/B+交集):显式:from A left/right [outer] join B on 
+	              子查询(嵌套):标量/列/行/表
